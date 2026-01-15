@@ -222,14 +222,15 @@ function isLocalTrain(train) {
   return type.includes("普通");
 }
 
-// ★ サンダーバード、ひだ専用ルール
-  if (isSpecialLtdExp(train)) {
-  return (last % 2 === 1) ? "down" : "up";
-}
-  
 function getTrackKey(train) {
   const last = getLastDigit(train);
   if (last === null) return "up";
+  
+  // ★ サンダーバード、ひだ専用ルール
+  if (isSpecialLtdExp(train)) {
+  return (last % 2 === 1) ? "down" : "up";
+}
+ // ★ 上記に該当しない列車（＝それ以外すべて）
   return (last % 2 === 1) ? "up" : "down";
 }
 // ===============================
@@ -481,5 +482,6 @@ setInterval(update, 45000);
 </script>
 </body>
 </html>
+
 
 
